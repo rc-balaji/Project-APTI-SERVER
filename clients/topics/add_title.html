@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Title</title>
+    <style>
+      .input-container {
+        margin-bottom: 10px;
+      }
+      .section {
+        margin-bottom: 20px;
+      }
+      h2 {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add Title to Subtopic</h1>
+
+    <div class="section" id="addTitleSection">
+      <h2>Add Title</h2>
+
+      <div class="input-container">
+        <label for="topic_id1">Topic:</label>
+        <select id="topic_id1" required>
+          <option value="" disabled selected>Select a Topic</option>
+        </select>
+      </div>
+
+      <div class="input-container">
+        <label for="subtopic_id1">Subtopic:</label>
+        <select id="subtopic_id1" required>
+          <option value="" disabled selected>Select a Subtopic</option>
+        </select>
+      </div>
+
+      <div class="input-container">
+        <label for="titleOnly">Title:</label>
+        <input type="text" id="titleOnly" required />
+      </div>
+
+      <div class="input-container">
+        <label for="typeOnly">Type:</label>
+        <select id="typeOnly" required>
+          <option value="Practices">Practices</option>
+          <option value="Test">Test</option>
+        </select>
+      </div>
+
+      <button onclick="addTitle()">Add Title</button>
+    </div>
+
+    <script>
+      const userId = 12;
+      const ip = "http://localhost:4000";
+      let topics = []; // Global variable to store topics
+      let subtopics = []; // Global variable to store subtopics
+
+      // Fetch Topics and populate the topic dropdown
+      function fetchTopics() {
+        fetch(`${ip}/topic`)
+          .then((response) => response.json())
+          .then((data) => {
+            topics = data; // Store the topics in global variable
+            const topicDropdown = document.getElementById("topic_id1");
+            data.forEach((topic) => {
+              const option = document.createElement("option");
+              option.value = topic.topic_id;
+              option.textContent = topic.name;
+              topicDropdown.appendChild(option);
+            });
+          })
+          .catch((error) => {
+            alert(`Error fetching topics: ${error.message}`);
+            console.error(error);
+          });
+      }
+
+      // Fetch Subtopics based on selected Topic and populate the subtopic dropdown
+      function fetchSubtopics(topic_id) {
+        fetch(`${ip}/subtopics?topic_id=${topic_id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            subtopics = data; // Store the subtopics in global variable
+            const subtopicDropdown = document.getElementById("subtopic_id1");
+            subtopicDropdown.innerHTML =
+              '<option value="" disabled selected>Select a Subtopic</option>'; // Reset subtopic options
+            data.forEach((subtopic) => {
+              const option = document.createElement("option");
+              option.value = subtopic.subtopic_id;
+              option.textContent = subtopic.name;
+              subtopicDropdown.appendChild(option);
+            });
+          })
+          .catch((error) => {
+            alert(`Error fetching subtopics: ${error.message}`);
+            console.error(error);
+          });
+      }
+
+      // Event listener for topic selection
+      document
+        .getElementById("topic_id1")
+        .addEventListener("change", function () {
+          const topicId = this.value;
+          if (topicId) {
+            fetchSubtopics(topicId);
+          }
+        });
+
+      // Fetch topics on page load
+      window.onload = fetchTopics;
+
+      // Function to send the new title to the backend
+      function addTitle() {
+        const topicId = document.getElementById("topic_id1").value;
+        const subtopicId = document.getElementById("subtopic_id1").value;
+        const title = document.getElementById("titleOnly").value;
+        const type = document.getElementById("typeOnly").value;
+
+        const titleData = { title, type, created_by: userId };
+        fetchPostData(
+          `${ip}/add/topic/${topicId}/subtopics/${subtopicId}`,
+          titleData,
+          "Title added successfully!"
+        );
+      }
+
+      // Function to send POST request
+      function fetchPostData(url, data, successMessage) {
+        fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(successMessage);
+            console.log(data);
+          })
+          .catch((error) => {
+            alert(`Error: ${error.message}`);
+            console.error(error);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <div>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+      const API_BASE_URL = "http://localhost:3000";
+
+      async function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const data = { email, password };
+
+        console.log(data);
+
+        await fetch(`${API_BASE_URL}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Invalid credentials or server error");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert(data.message);
+            // Redirect based on user role
+            switch (data.role) {
+              case "user":
+                window.location.href = "./user.html";
+                break;
+              case "admin":
+                window.location.href = "./admin.html";
+                break;
+              case "subadmin":
+                window.location.href = "./subadmin.html";
+                break;
+              default:
+                alert("Error: Invalid role");
+                break;
+            }
+          })
+          .catch((error) => {
+            alert("Error: " + error.message);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCQ Questions by Topic, Subtopic, and Title</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+      label,
+      select,
+      button {
+        margin: 10px 0;
+        display: block;
+      }
+      select,
+      button {
+        padding: 5px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 5px 15px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #questions {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .question {
+        margin: 20px 0;
+      }
+      .explanation {
+        display: none;
+        color: #333;
+        font-style: italic;
+      }
+      .result {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>MCQ Questions by Topic, Subtopic, and Title</h1>
+
+    <label for="topicDropdown">Choose a Topic:</label>
+    <select id="topicDropdown"></select>
+    <button onclick="fetchSubtopics()">Get Subtopics</button>
+
+    <label for="subtopicDropdown">Choose a Subtopic:</label>
+    <select id="subtopicDropdown"></select>
+
+    <label for="utils">Select Utility Type:</label>
+    <select id="utils">
+      <option value="Practices">Practice</option>
+      <option value="Test">Test</option>
+    </select>
+    <button onclick="fetchTitles()">Get Titles</button>
+
+    <label for="titleDropdown">Choose a Title:</label>
+    <select id="titleDropdown"></select>
+
+    <button onclick="fetchQuestions()">Get Questions</button>
+
+    <div id="questions"></div>
+    <div class="result" id="result"></div>
+
+    <script>
+      const ip = "http://localhost:4000";
+
+      ////
+      const user_id = 1;
+      let topics = [];
+      let subtopics = [];
+      let titles = [];
+      let score = 0;
+      const results = {};
+
+      async function fetchTopics() {
+        try {
+          const response = await fetch(ip + "/topic");
+          topics = await response.json();
+          const topicDropdown = document.getElementById("topicDropdown");
+          topicDropdown.innerHTML = topics
+            .map(
+              (topic) =>
+                `<option value="${topic.topic_id}">${topic.name}</option>`
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching topics:", error);
+        }
+      }
+
+      async function fetchSubtopics() {
+        const topicId = document.getElementById("topicDropdown").value;
+        try {
+          const response = await fetch(`${ip}/subtopics?topic_id=${topicId}`);
+          subtopics = await response.json();
+          const subtopicDropdown = document.getElementById("subtopicDropdown");
+          subtopicDropdown.innerHTML = subtopics
+            .map(
+              (sub) => `<option value="${sub.subtopic_id}">${sub.name}</option>`
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching subtopics:", error);
+        }
+      }
+
+      async function fetchTitles() {
+        const topicId = document.getElementById("topicDropdown").value;
+        const subtopicId = document.getElementById("subtopicDropdown").value;
+        const utilsType = document.getElementById("utils").value;
+
+        try {
+          const response = await fetch(
+            `${ip}/title?topic_id=${topicId}&subtopic_id=${subtopicId}&utils_type=${utilsType}`
+          );
+          titles = await response.json();
+          const titleDropdown = document.getElementById("titleDropdown");
+          titleDropdown.innerHTML = titles
+            .map(
+              (title) =>
+                `<option value="${title.title_id}">${title.title}</option>`
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching titles:", error);
+        }
+      }
+
+      async function fetchQuestions() {
+        const topicId = document.getElementById("topicDropdown").value;
+        const subtopicId = document.getElementById("subtopicDropdown").value;
+        const utils = document.getElementById("utils").value;
+        const titleId = document.getElementById("titleDropdown").value;
+
+        try {
+          const response = await fetch(
+            `${ip}/questions?topic_id=${topicId}&subtopic_id=${subtopicId}&utils=${utils}&title_id=${titleId}`
+          );
+          const data = await response.json();
+          displayQuestions(data);
+        } catch (error) {
+          console.error("Error fetching questions:", error);
+        }
+      }
+
+      function displayQuestions(data) {
+        const questionsDiv = document.getElementById("questions");
+        questionsDiv.innerHTML = data
+          .map(
+            (section, index) => `
+            <h2>${section.title}</h2>
+            ${section.questions
+              .map(
+                (q, i) => `
+              <div class="question">
+                <p>Q${i + 1}: ${q.question}</p>
+                ${q.options
+                  .map(
+                    (opt, j) => `
+                  <label>
+                    <input type="radio" name="question_${
+                      q.question_id
+                    }" value="${j + 1}" />
+                    ${opt}
+                  </label>
+                `
+                  )
+                  .join("")}
+                <button onclick="showExplanation(${
+                  q.question_id
+                })">Show Answer</button>
+                <div class="explanation" id="explanation_${q.question_id}">
+                  Correct Answer: Option ${q.correct_option}<br />
+                  Explanation: ${q.explanation}
+                </div>
+              </div>
+            `
+              )
+              .join("")}
+          `
+          )
+          .join("");
+
+        questionsDiv.innerHTML += `<button onclick="validateAnswers(${JSON.stringify(
+          data
+        ).replace(/"/g, "&quot;")})">Validate</button>`;
+      }
+
+      function showExplanation(questionId) {
+        const explanationDiv = document.getElementById(
+          `explanation_${questionId}`
+        );
+        explanationDiv.style.display = "block";
+      }
+
+      function validateAnswers(data) {
+        score = 0;
+        results.user_id = user_id;
+        results.topic_id = document.getElementById("topicDropdown").value;
+        results.subtopic_id = document.getElementById("subtopicDropdown").value;
+        results.utils = document.getElementById("utils").value;
+        results.title_id = document.getElementById("titleDropdown").value;
+        results.answers = [];
+
+        data.forEach((section) => {
+          section.questions.forEach((q, index) => {
+            const selectedOption = document.querySelector(
+              `input[name="question_${q.question_id}"]:checked`
+            );
+            const resultObj = {
+              question_no: index + 1,
+              question_id: q.question_id,
+              selected_option: selectedOption ? selectedOption.value : null,
+              correct_option: q.correct_option,
+              score:
+                selectedOption && selectedOption.value == q.correct_option
+                  ? 1
+                  : 0,
+            };
+            results.answers.push(resultObj);
+            if (resultObj.score === 1) score++;
+          });
+        });
+
+        results.score = score;
+        displayResults();
+      }
+
+      function displayResults() {
+        document.getElementById(
+          "result"
+        ).innerHTML = `Your Score: ${results.score}`;
+      }
+
+      fetchTopics();
+    </script>
+  </body>
+</html>

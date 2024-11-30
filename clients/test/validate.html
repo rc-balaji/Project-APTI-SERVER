@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validate Answer</title>
+  </head>
+  <body>
+    <h1>Validate User Answer</h1>
+    <label for="userId">Enter User ID:</label>
+    <input type="text" id="userId" placeholder="User ID" />
+    <label for="topicId">Enter Topic ID:</label>
+    <input type="text" id="topicId" placeholder="Topic ID" />
+    <label for="subtopicId">Enter Subtopic ID:</label>
+    <input type="text" id="subtopicId" placeholder="Subtopic ID" />
+    <label for="questionId">Enter Question ID:</label>
+    <input type="text" id="questionId" placeholder="Question ID" />
+    <label for="type">Enter Type (e.g., Practices, Test):</label>
+    <input type="text" id="type" placeholder="Type" />
+    <label for="answer">Enter Answer:</label>
+    <input type="text" id="answer" placeholder="Answer" />
+    <button onclick="validateAnswer()">Validate</button>
+    <div id="validationResult"></div>
+
+    <script>
+      async function validateAnswer() {
+        const userId = document.getElementById("userId").value;
+        const topicId = document.getElementById("topicId").value;
+        const subtopicId = document.getElementById("subtopicId").value;
+        const questionId = document.getElementById("questionId").value;
+        const type = document.getElementById("type").value;
+        const answer = document.getElementById("answer").value;
+
+        try {
+          const response = await fetch("http://localhost:4000/validate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              user_id: userId,
+              topic_id: topicId,
+              subtopic_id: subtopicId,
+              question_id: questionId,
+              type,
+              answer,
+            }),
+          });
+          const result = await response.json();
+          document.getElementById("validationResult").innerHTML = `
+          <h2>Validation Result</h2>
+          <pre>${JSON.stringify(result, null, 2)}</pre>
+        `;
+        } catch (error) {
+          console.error("Error validating answer:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

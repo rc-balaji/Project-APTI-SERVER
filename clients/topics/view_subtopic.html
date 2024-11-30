@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Subtopics</title>
+  </head>
+  <body>
+    <h1>Subtopics</h1>
+
+    <!-- Input field for entering topic_id -->
+    <label for="topicIdInput">Enter Topic ID:</label>
+    <input type="text" id="topicIdInput" />
+    <button onclick="fetchSubtopics()">View Subtopics</button>
+
+    <div id="subtopics-list"></div>
+
+    <script>
+      const ip = "http://localhost:4000";
+
+      // Function to fetch subtopics based on topic_id input
+      function fetchSubtopics() {
+        const topicId = document.getElementById("topicIdInput").value.trim();
+        if (!topicId) {
+          alert("Please enter a topic ID.");
+          return;
+        }
+
+        // Fetch subtopics for the given topic_id from the backend
+        fetch(`${ip}/get-topic?ids=${topicId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const subtopicsList = document.getElementById("subtopics-list");
+            subtopicsList.innerHTML = ""; // Clear previous results
+
+            if (data.length === 0 || !data[0].sub_topics.length) {
+              subtopicsList.innerHTML =
+                "<p>No subtopics available for this topic</p>";
+            } else {
+              const list = document.createElement("ul");
+              data[0].sub_topics.forEach((subtopic) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<strong>${subtopic.name}</strong> (ID: ${subtopic.subtopic_id})`;
+                list.appendChild(listItem);
+              });
+              subtopicsList.appendChild(list);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching subtopics:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content by Topic and Subtopic</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+      label,
+      select,
+      button {
+        margin: 10px 0;
+        display: block;
+      }
+      select {
+        width: 300px;
+        padding: 5px;
+      }
+      button {
+        padding: 5px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #content {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Content by Topic and Subtopic</h1>
+
+    <label for="topicDropdown">Choose a Topic:</label>
+    <select id="topicDropdown"></select>
+    <button onclick="fetchSubtopics()">Get Subtopics</button>
+
+    <label for="subtopicDropdown">Choose a Subtopic:</label>
+    <select id="subtopicDropdown"></select>
+    <button onclick="fetchContent()">Get Content</button>
+
+    <div id="content"></div>
+
+    <script>
+      const ip = "http://localhost:4000";
+
+      let topics = [];
+      let subtopics = [];
+
+      // Fetch topics initially and populate the dropdown
+      async function fetchTopics() {
+        try {
+          const response = await fetch(ip + "/topic");
+          topics = await response.json();
+          const topicDropdown = document.getElementById("topicDropdown");
+          topicDropdown.innerHTML = topics
+            .map(
+              (topic) =>
+                `<option value="${topic.topic_id}">${topic.name}</option>`
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching topics:", error);
+        }
+      }
+
+      // Fetch subtopics based on selected topic
+      async function fetchSubtopics() {
+        const topicId = document.getElementById("topicDropdown").value;
+        try {
+          const response = await fetch(`${ip}/subtopics?topic_id=${topicId}`);
+          subtopics = await response.json();
+          const subtopicDropdown = document.getElementById("subtopicDropdown");
+          subtopicDropdown.innerHTML = subtopics
+            .map(
+              (sub) => `<option value="${sub.subtopic_id}">${sub.name}</option>`
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching subtopics:", error);
+        }
+      }
+
+      // Fetch content based on selected topic and subtopic
+      async function fetchContent() {
+        const topicId = document.getElementById("topicDropdown").value;
+        const subtopicId = document.getElementById("subtopicDropdown").value;
+
+        try {
+          const response = await fetch(
+            `${ip}/questions?topic_id=${topicId}&subtopic_id=${subtopicId}&utils=content`
+          );
+          const data = await response.json();
+          const contentDiv = document.getElementById("content");
+          contentDiv.innerHTML = `
+            <h2>Content</h2>
+            <pre>${data.content ? data.content : "No content available"}</pre>
+          `;
+        } catch (error) {
+          console.error("Error fetching content:", error);
+        }
+      }
+
+      // Initial function call to populate topics
+      fetchTopics();
+    </script>
+  </body>
+</html>

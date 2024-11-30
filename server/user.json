@@ -1,0 +1,38 @@
+[
+  {
+    "user_id": 1,
+    "name": "user",
+    "role": "user",
+    "email": "user@gmail.com",
+    "password": "12345",
+    "dob": "2024-11-21",
+    "city": "Tirupur",
+    "state": "Tamilnadu",
+    "country": "India",
+    "topics": [],
+    "test_history": []
+  },
+  {
+    "user_id": 2,
+    "name": "admin",
+    "role": "admin",
+    "email": "admin@gmail.com",
+    "password": "12345",
+    "dob": "2024-11-22",
+    "city": "Tirupur",
+    "state": "Tamilnadu",
+    "country": "India"
+  },
+  {
+    "user_id": 3,
+    "name": "subadmin",
+    "role": "subadmin",
+    "email": "subadmin@gmail.com",
+    "password": "12345",
+    "dob": "2024-11-22",
+    "city": "Tirupur",
+    "state": "Tamilnadu",
+    "country": "India",
+    "topics": []
+  }
+]

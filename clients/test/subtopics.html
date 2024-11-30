@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtopics List</title>
+  </head>
+  <body>
+    <h1>Subtopics by Topic</h1>
+    <label for="topicDropdown">Choose a Topic:</label>
+    <select id="topicDropdown"></select>
+    <button onclick="fetchSubtopics()">Get Subtopics</button>
+    <div id="subtopics"></div>
+
+    <script>
+      let topics = [];
+
+      // Fetch topics initially and populate the dropdown
+      async function fetchTopics() {
+        try {
+          const response = await fetch("http://localhost:4000/topic");
+          topics = await response.json();
+          const dropdown = document.getElementById("topicDropdown");
+          dropdown.innerHTML = topics
+            .map(
+              (topic) =>
+                `<option value="${topic.topic_id}">${topic.name}</option>`
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching topics:", error);
+        }
+      }
+
+      // Fetch subtopics based on selected topic
+      async function fetchSubtopics() {
+        const topicId = document.getElementById("topicDropdown").value;
+        try {
+          const response = await fetch(
+            `http://localhost:4000/subtopics?topic_id=${topicId}`
+          );
+          const subtopics = await response.json();
+          document.getElementById("subtopics").innerHTML = `
+            <h2>Subtopics</h2>
+            <ul>${subtopics
+              .map((sub) => `<li>${sub.name} (ID: ${sub.subtopic_id})</li>`)
+              .join("")}</ul>
+          `;
+        } catch (error) {
+          console.error("Error fetching subtopics:", error);
+        }
+      }
+
+      // Initial function call to populate topics
+      fetchTopics();
+    </script>
+  </body>
+</html>

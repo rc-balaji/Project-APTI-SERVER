@@ -1,0 +1,308 @@
+[
+  {
+    "name": "Aptitude",
+    "topic_id": 1,
+    "created_by": 2,
+    "created_at": "11:30 AM 22/12/2024",
+    "sub_topics": [
+      {
+        "name": "General Aptitude",
+        "subtopic_id": 1,
+        "created_by": 2,
+        "created_at": "11:30 AM 22/12/2024",
+        "utils": {
+          "Learning Materials": {
+            "contents": "Aptitude questions and answers for your placement interviews and competitive exams!"
+          },
+          "Practices": [
+            {
+              "title": "Problems on Trains",
+              "questions": [
+                {
+                  "question": "How long will a train take to cover 210 km if it moves at 70 km/hr?",
+                  "options": {
+                    "a": "2 hours",
+                    "b": "3 hours",
+                    "c": "4 hours",
+                    "d": "5 hours"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Time = distance / speed = 210 / 70 = 3 hours."
+                },
+                {
+                  "question": "A train moves at 55 km/hr and travels 275 km. How long does it take?",
+                  "options": {
+                    "a": "4 hours",
+                    "b": "5 hours",
+                    "c": "6 hours",
+                    "d": "7 hours"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Time = distance / speed = 275 / 55 = 5 hours."
+                },
+                {
+                  "question": "If a train covers 500 km in 10 hours, what is its speed?",
+                  "options": {
+                    "a": "45 km/hr",
+                    "b": "50 km/hr",
+                    "c": "55 km/hr",
+                    "d": "60 km/hr"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Speed = distance / time = 500 / 10 = 50 km/hr."
+                }
+              ]
+            }
+          ],
+          "Test": [
+            {
+              "title": "Problems on Speed",
+              "questions": [
+                {
+                  "question": "If a car moves at 45 km/hr and travels 90 km, how long does it take?",
+                  "options": {
+                    "a": "1.5 hours",
+                    "b": "2 hours",
+                    "c": "2.5 hours",
+                    "d": "3 hours"
+                  },
+                  "correct_option": "b",
+                  "explanation": "Time = distance / speed = 90 / 45 = 2 hours."
+                },
+                {
+                  "question": "What is the speed of a bicycle that covers 50 km in 5 hours?",
+                  "options": {
+                    "a": "8 km/hr",
+                    "b": "9 km/hr",
+                    "c": "10 km/hr",
+                    "d": "11 km/hr"
+                  },
+                  "correct_option": "c",
+                  "explanation": "Speed = distance / time = 50 / 5 = 10 km/hr."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "Algebra",
+        "subtopic_id": 2,
+        "created_by": 3,
+        "created_at": "12:00 PM 22/12/2024",
+        "utils": {
+          "Practices": [
+            {
+              "title": "Linear Equations",
+              "questions": [
+                {
+                  "question": "Solve for x: 2x + 5 = 15",
+                  "options": {
+                    "a": "x = 5",
+                    "b": "x = 7",
+                    "c": "x = 10",
+                    "d": "x = 3"
+                  },
+                  "correct_option": "a",
+                  "explanations": "2x = 10, so x = 5."
+                },
+                {
+                  "question": "Solve for y: 3y - 4 = 11",
+                  "options": {
+                    "a": "y = 5",
+                    "b": "y = 3",
+                    "c": "y = 6",
+                    "d": "y = 7"
+                  },
+                  "correct_option": "a",
+                  "explanations": "3y = 15, so y = 5."
+                },
+                {
+                  "question": "Solve for z: 4z + 8 = 24",
+                  "options": {
+                    "a": "z = 4",
+                    "b": "z = 2",
+                    "c": "z = 3",
+                    "d": "z = 5"
+                  },
+                  "correct_option": "a",
+                  "explanations": "4z = 16, so z = 4."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "IoT",
+    "topic_id": 2,
+    "created_by": 4,
+    "created_at": "01:00 PM 22/12/2024",
+    "sub_topics": [
+      {
+        "name": "Sensors and Actuators",
+        "subtopic_id": 1,
+        "created_by": 4,
+        "created_at": "01:30 PM 22/12/2024",
+        "utils": {
+          "Learning Materials": {
+            "contents": "Understand the basic components of IoT such as sensors and actuators."
+          },
+          "Practices": [
+            {
+              "title": "Temperature Sensors",
+              "questions": [
+                {
+                  "question": "What type of sensor is used to measure temperature?",
+                  "options": {
+                    "a": "Photocell",
+                    "b": "Thermistor",
+                    "c": "Light Sensor",
+                    "d": "Pressure Sensor"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Thermistors are used to measure temperature."
+                },
+                {
+                  "question": "Which sensor can measure humidity?",
+                  "options": {
+                    "a": "Thermistor",
+                    "b": "Hygrometer",
+                    "c": "Barometer",
+                    "d": "Accelerometer"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Hygrometers measure humidity."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "Communication Protocols",
+        "subtopic_id": 2,
+        "created_by": 5,
+        "created_at": "02:00 PM 22/12/2024",
+        "utils": {
+          "Practices": [
+            {
+              "title": "Wi-Fi and Bluetooth",
+              "questions": [
+                {
+                  "question": "Which protocol is most commonly used for short-range wireless communication?",
+                  "options": {
+                    "a": "Wi-Fi",
+                    "b": "Bluetooth",
+                    "c": "Zigbee",
+                    "d": "LTE"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Bluetooth is commonly used for short-range communication."
+                },
+                {
+                  "question": "Which protocol is used for long-range communication in IoT?",
+                  "options": {
+                    "a": "Wi-Fi",
+                    "b": "Bluetooth",
+                    "c": "LoRa",
+                    "d": "Zigbee"
+                  },
+                  "correct_option": "c",
+                  "explanations": "LoRa is used for long-range communication."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "AI",
+    "topic_id": 3,
+    "created_by": 6,
+    "created_at": "03:00 PM 22/12/2024",
+    "sub_topics": [
+      {
+        "name": "Machine Learning",
+        "subtopic_id": 1,
+        "created_by": 6,
+        "created_at": "03:30 PM 22/12/2024",
+        "utils": {
+          "Learning Materials": {
+            "contents": "Introduction to Machine Learning concepts and algorithms."
+          },
+          "Practices": [
+            {
+              "title": "Supervised Learning",
+              "questions": [
+                {
+                  "question": "What is supervised learning?",
+                  "options": {
+                    "a": "Learning from unlabeled data",
+                    "b": "Learning from labeled data",
+                    "c": "Learning from reinforcement",
+                    "d": "Learning without feedback"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Supervised learning uses labeled data for training models."
+                },
+                {
+                  "question": "Which algorithm is commonly used for supervised learning?",
+                  "options": {
+                    "a": "K-Means",
+                    "b": "Linear Regression",
+                    "c": "K-Nearest Neighbors",
+                    "d": "Random Forest"
+                  },
+                  "correct_option": "b",
+                  "explanations": "Linear Regression is used for supervised learning."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "Deep Learning",
+        "subtopic_id": 2,
+        "created_by": 7,
+        "created_at": "04:00 PM 22/12/2024",
+        "utils": {
+          "Practices": [
+            {
+              "title": "Neural Networks",
+              "questions": [
+                {
+                  "question": "What is the main purpose of an artificial neural network?",
+                  "options": {
+                    "a": "To detect anomalies",
+                    "b": "To process data in a structured form",
+                    "c": "To classify data and learn patterns",
+                    "d": "To generate random data"
+                  },
+                  "correct_option": "c",
+                  "explanations": "Neural networks are used to classify data and learn patterns."
+                },
+                {
+                  "question": "Which activation function is commonly used in neural networks?",
+                  "options": {
+                    "a": "Sigmoid",
+                    "b": "Tanh",
+                    "c": "ReLU",
+                    "d": "Softmax"
+                  },
+                  "correct_option": "c",
+                  "explanations": "ReLU is commonly used in neural networks for activation."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

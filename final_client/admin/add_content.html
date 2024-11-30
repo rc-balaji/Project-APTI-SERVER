@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Content</title>
+  </head>
+  <body>
+    <h1>Add Content</h1>
+    <form id="addContentForm">
+      <label for="topic_id">Topic:</label>
+      <select id="topic_id" name="topic_id" required>
+        <option value="" disabled selected>Select a topic</option>
+        <!-- Options will be populated here --></select
+      ><br /><br />
+
+      <label for="subtopic_id">Subtopic:</label>
+      <select id="subtopic_id" name="subtopic_id" required>
+        <option value="" disabled selected>Select a subtopic</option>
+        <!-- Options will be populated here --></select
+      ><br /><br />
+
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" required></textarea><br /><br />
+
+      <input type="hidden" id="user_id" value="12" />
+      <button type="submit">Add Content</button>
+    </form>
+
+    <script>
+      // Global variables for topics and subtopics
+      let topics = [];
+      let subtopics = [];
+
+      // Fetch and populate topics dropdown
+      window.onload = function () {
+        const ip = "http://localhost:4000";
+
+        // Fetch topics from the API
+        fetch(`${ip}/topic`)
+          .then((response) => response.json())
+          .then((data) => {
+            topics = data; // Store the fetched topics in the global variable
+            populateTopicDropdown(topics); // Populate the dropdown with topics
+          })
+          .catch((err) => console.error("Error fetching topics:", err));
+      };
+
+      // Populate the topic dropdown
+      function populateTopicDropdown(topics) {
+        const topicSelect = document.getElementById("topic_id");
+        topics.forEach((topic) => {
+          const option = document.createElement("option");
+          option.value = topic.topic_id;
+          option.textContent = topic.name;
+          topicSelect.appendChild(option);
+        });
+      }
+
+      // Fetch and populate subtopics dropdown based on selected topic
+      document
+        .getElementById("topic_id")
+        .addEventListener("change", function () {
+          const topicId = this.value;
+          if (topicId) {
+            fetchSubtopics(topicId); // Fetch subtopics for the selected topic
+          }
+        });
+
+      // Fetch subtopics based on selected topic
+      function fetchSubtopics(topicId) {
+        const ip = "http://localhost:4000";
+
+        fetch(`${ip}/subtopics?topic_id=${topicId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            subtopics = data; // Store the fetched subtopics in the global variable
+            populateSubtopicDropdown(subtopics); // Populate the subtopics dropdown
+          })
+          .catch((err) => console.error("Error fetching subtopics:", err));
+      }
+
+      // Populate the subtopic dropdown
+      function populateSubtopicDropdown(subtopics) {
+        const subtopicSelect = document.getElementById("subtopic_id");
+        subtopicSelect.innerHTML =
+          '<option value="" disabled selected>Select a subtopic</option>'; // Reset subtopic options
+        subtopics.forEach((subtopic) => {
+          const option = document.createElement("option");
+          option.value = subtopic.subtopic_id;
+          option.textContent = subtopic.name;
+          subtopicSelect.appendChild(option);
+        });
+      }
+
+      // Form submit handler
+      document
+        .getElementById("addContentForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const topicId = document.getElementById("topic_id").value;
+          const subtopicId = document.getElementById("subtopic_id").value;
+          const content = document.getElementById("content").value;
+          const userId = document.getElementById("user_id").value;
+          const ip = "http://localhost:4000";
+
+          // Send the form data to the server
+          fetch(`${ip}/add/topic/${topicId}/subtopics/${subtopicId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              content,
+              type: "Learning_Materials",
+              user_id: userId,
+            }),
+          })
+            .then((response) => response.json())
+            .then()
+            .catch((err) => alert("Error: " + err.message));
+        });
+    </script>
+  </body>
+</html>

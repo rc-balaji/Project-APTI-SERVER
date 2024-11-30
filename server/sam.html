@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Sample</title>
+  <script>
+    async function downloadSample() {
+      const requestBody = {
+        topic_id: 1,
+        subtopic_id: 1,
+        title_id: 4,
+        type: "Test",
+        no_of_questions: 5
+      };
+
+      try {
+        const response = await fetch("http://localhost:4000/download-sample", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to download the file");
+        }
+
+        // Extract the filename from the Content-Disposition header
+        const contentDisposition = response.headers.get("Content-Disposition");
+        const fileName = contentDisposition
+          ? contentDisposition.split("filename=")[1].replace(/"/g, "")
+          : "Sample_Format.xlsx";
+
+        // Convert the response to a blob
+        const blob = await response.blob();
+
+        // Create a link element to download the file
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = fileName;
+        downloadLink.click();
+
+        // Clean up the URL object
+        URL.revokeObjectURL(downloadLink.href);
+      } catch (error) {
+        console.error("Error:", error.message);
+        alert("Failed to download the file. Please try again.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Download Sample Data</h1>
+  <button onclick="downloadSample()">Download Sample Format</button>
+</body>
+</html>

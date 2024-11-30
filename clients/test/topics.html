@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Topics</title>
+  </head>
+  <body>
+    <h1>Topics List</h1>
+    <div id="topics"></div>
+
+    <script>
+      async function fetchTopics() {
+        try {
+          const response = await fetch("http://localhost:4000/topic");
+          const topics = await response.json();
+          document.getElementById("topics").innerHTML = `
+          <h2>Topics</h2>
+          <ul>${topics
+            .map((topic) => `<li>${topic.name} (ID: ${topic.topic_id})</li>`)
+            .join("")}</ul>
+        `;
+        } catch (error) {
+          console.error("Error fetching topics:", error);
+        }
+      }
+
+      fetchTopics();
+    </script>
+  </body>
+</html>

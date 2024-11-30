@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Topics</title>
+  </head>
+  <body>
+    <h1>All Topics</h1>
+    <div id="topics-list"></div>
+
+    <h2>Get Specific Topics by IDs</h2>
+    <input
+      type="text"
+      id="topic-ids"
+      placeholder="Enter comma-separated topic IDs"
+    />
+    <button onclick="fetchSpecificTopics()">Get Topics</button>
+    <div id="specific-topics-list"></div>
+
+    <script>
+      const ip = "http://localhost:4000";
+
+      // Fetch all topics from the backend
+      fetch(ip + "/get-topics", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const topicsList = document.getElementById("topics-list");
+          if (data.length === 0) {
+            topicsList.innerHTML = "<p>No topics available</p>";
+          } else {
+            const list = document.createElement("ul");
+            data.forEach((topic) => {
+              const listItem = document.createElement("li");
+              listItem.innerHTML = `<strong>${topic.name}</strong> (ID: ${topic.topic_id})`;
+              list.appendChild(listItem);
+            });
+            topicsList.appendChild(list);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching topics:", error);
+        });
+
+      // Function to fetch specific topics based on comma-separated IDs
+      function fetchSpecificTopics() {
+        const ids = document.getElementById("topic-ids").value;
+        if (!ids) {
+          alert("Please enter topic IDs.");
+          return;
+        }
+
+        fetch(`${ip}/get-topic?ids=${ids}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const specificTopicsList = document.getElementById(
+              "specific-topics-list"
+            );
+            specificTopicsList.innerHTML = ""; // Clear previous list
+
+            if (data.length === 0) {
+              specificTopicsList.innerHTML =
+                "<p>No topics found for the provided IDs.</p>";
+            } else {
+              const list = document.createElement("ul");
+              data.forEach((topic) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<strong>${topic.name}</strong> (ID: ${topic.topic_id})`;
+                list.appendChild(listItem);
+              });
+              specificTopicsList.appendChild(list);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching specific topics:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <div>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <br />
+      <button onclick='window.location.href = "./users/register.html"'>
+        Register
+      </button>
+    </div>
+
+    <script>
+      const ip = "http://localhost:4000";
+
+      async function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const data = { email, password };
+
+        console.log(data);
+
+        await fetch(`${ip}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Invalid credentials or server error");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert(data.message);
+            // Redirect based on user role
+            switch (data.role) {
+              case "user":
+                window.location.href = "./users/user.html";
+                break;
+              case "admin":
+                window.location.href = "./admin/admin.html";
+                break;
+              case "subadmin":
+                window.location.href = "./admin/sub-admin.html";
+                break;
+              default:
+                alert("Error: Invalid role");
+                break;
+            }
+          })
+          .catch((error) => {
+            alert("Error: " + error.message);
+          });
+      }
+    </script>
+  </body>
+</html>

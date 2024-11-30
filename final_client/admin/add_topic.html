@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Topic</title>
+  </head>
+  <body>
+    <h1>Add Topic</h1>
+    <label for="topic_name">Topic Name:</label>
+    <input type="text" id="topic_name" name="topic_name" required /><br /><br />
+    <input type="hidden" id="user_id" value="12" />
+    <button onclick="submitTopic()">Add Topic</button>
+
+    <script>
+      async function submitTopic() {
+        const topicName = document.getElementById("topic_name").value;
+        const userId = document.getElementById("user_id").value;
+
+        console.log(topicName, userId);
+
+        const ip = "http://localhost:4000";
+
+        console.log("TP-1");
+
+        try {
+          const response = await fetch(ip + "/add/topic", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ topic_name: topicName, user_id: userId }),
+          });
+          console.log("TP-2");
+
+          const data = await response.json();
+        } catch (error) {
+          alert("Error adding topic: " + error.message);
+        }
+      }
+    </script>
+  </body>
+</html>

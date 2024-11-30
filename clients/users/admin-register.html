@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin/Subadmin Registration</title>
+  </head>
+  <body>
+    <h2>Admin/Subadmin Registration</h2>
+    <div>
+      <input type="text" id="name" placeholder="Name" />
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <input type="date" id="dob" placeholder="Date of Birth" />
+      <input type="text" id="city" placeholder="City" />
+      <input type="text" id="state" placeholder="State" />
+      <input type="text" id="country" placeholder="Country" />
+      <select id="role">
+        <option value="admin">Admin</option>
+        <option value="subadmin">Subadmin</option>
+      </select>
+      <button onclick="registerAdmin()">Register</button>
+    </div>
+
+    <script>
+      const API_BASE_URL = "http://localhost:3000";
+
+      function registerAdmin() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const dob = document.getElementById("dob").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const country = document.getElementById("country").value;
+        const role = document.getElementById("role").value;
+
+        const data = { name, email, password, dob, city, state, country, role };
+        console.log(data);
+
+        fetch(`${API_BASE_URL}/admin-register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to register admin");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert(data.message);
+            // Redirect based on the role of the user
+            if (role === "admin") {
+              window.location.href = "./admin.html";
+            } else if (role === "subadmin") {
+              window.location.href = "./subadmin.html";
+            }
+          })
+          .catch((error) => {
+            alert("Error: " + error.message);
+          });
+      }
+    </script>
+  </body>
+</html>

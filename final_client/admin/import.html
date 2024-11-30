@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Questions File</title>
+  </head>
+  <body>
+    <h1>Bulk Question Upload</h1>
+
+    <!-- Form to upload the Excel file -->
+    <form id="uploadForm" enctype="multipart/form-data">
+      <label for="file">Select Excel file to upload:</label>
+      <input type="file" id="file" name="file" accept=".xlsx" required />
+      <button type="submit">Upload</button>
+    </form>
+
+    <br />
+
+    <!-- Button to download the sample file format -->
+    <button id="downloadSampleBtn">Download Sample Format</button>
+
+    <p id="statusMessage"></p>
+
+    <script>
+      const ip = "http://localhost:4000";
+
+      // Handle file upload
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent form from refreshing the page
+
+          const fileInput = document.getElementById("file");
+          const file = fileInput.files[0];
+          if (!file) return alert("Please select a file to upload.");
+
+          const formData = new FormData();
+          formData.append("file", file);
+
+          try {
+            const response = await fetch(ip + "/add/questions/import", {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+              document.getElementById("statusMessage").innerText =
+                result.message;
+            } else {
+              document.getElementById("statusMessage").innerText = result.error;
+            }
+          } catch (error) {
+            document.getElementById("statusMessage").innerText =
+              "Failed to upload file.";
+          }
+        });
+
+      // Handle sample format download
+      document
+        .getElementById("downloadSampleBtn")
+        .addEventListener("click", function () {
+          window.location.href = ip + "/download/sample-format";
+        });
+    </script>
+  </body>
+</html>
