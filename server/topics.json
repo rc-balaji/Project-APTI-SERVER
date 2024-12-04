@@ -1,116 +1,23 @@
 [
   {
-    "name": "Aptitute",
-    "topic_id": 1,
-    "created_by": "2",
-    "created_at": "29/11/2024, 5:22:16 pm",
+    "name": "IoT2",
+    "topic_id": "203715333",
+    "created_by": "133244783",
+    "created_at": "3/12/2024, 5:16:16 pm",
     "sub_topics": [
       {
-        "name": "General Aptitude",
-        "subtopic_id": 1,
-        "created_by": "2",
-        "created_at": "29/11/2024, 5:22:25 pm",
+        "name": "20012",
+        "subtopic_id": "218075101",
+        "created_by": "133244783",
+        "created_at": "4/12/2024, 4:20:49 pm",
         "utils": {
           "Learning_Materials": {
-            "contents": ""
-          },
-          "Practices": [
-            {
-              "title": "Problems on Train",
-              "title_id": 1,
-              "questions": [
-                {
-                  "question_id": 1,
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 1,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": 2,
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 2,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": 3,
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 3,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": 4,
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 4,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": 5,
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 2,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                }
-              ]
-            }
-          ],
-          "Test": [
-            {
-              "title": "Problems on Speed",
-              "title_id": 1,
-              "questions": []
-            }
-          ]
-        }
-      },
-      {
-        "name": "Verbal",
-        "subtopic_id": 2,
-        "created_by": "2",
-        "created_at": "29/11/2024, 5:22:31 pm",
-        "utils": {
-          "Learning_Materials": {
-            "contents": ""
+            "contents": "<h1><strong><em><u>HELLO</u></em></strong></h1><h1><em><u>ASASASKA</u></em></h1>"
           },
           "Practices": [],
           "Test": []
         }
       }
     ]
-  },
-  {
-    "name": "Hello",
-    "topic_id": 2,
-    "created_by": "2",
-    "created_at": "29/11/2024, 5:52:15 pm",
-    "sub_topics": []
   }
 ]
