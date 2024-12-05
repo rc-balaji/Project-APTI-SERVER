@@ -76,6 +76,36 @@ const saveUsersData = (data) => {
 
 //API
 
+//Profile
+
+app.get("/api/users/:user_id", (req, res) => {
+  const { user_id } = req.params;
+  const users = readUsersData();
+  const user = users.find((user) => user.user_id === user_id);
+
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.status(404).json({ message: "User not found" });
+  }
+});
+
+app.post("/api/users/:user_id/update", (req, res) => {
+  const { user_id } = req.params;
+  const updatedData = req.body;
+
+  let users = readUsersData();
+  const userIndex = users.findIndex((user) => user.user_id === user_id);
+
+  if (userIndex !== -1) {
+    users[userIndex] = { ...users[userIndex], ...updatedData };
+    saveUsersData(users); // Function to save updated data back to the file
+    res.status(200).json({ message: "User updated successfully." });
+  } else {
+    res.status(404).json({ message: "User not found." });
+  }
+});
+
 // LOGIN
 
 // login.html
@@ -181,6 +211,45 @@ app.post("/admin-register", (req, res) => {
   } catch (error) {
     console.error("Error in /admin-register:", error.message);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// home_page admin.html
+
+// Dashboard Stats Endpoint
+app.get("/dashboard-stats", (req, res) => {
+  try {
+    // Read the users.json and topics.json files
+    const usersData = readUsersData(); // Assuming readUsersData() returns the users array
+    const topicsData = readTopicsFile(); // Assuming readTopicsFile() returns the topics array
+
+    if (!usersData || !topicsData) {
+      return res.status(500).json({ error: "Error reading data from files." });
+    }
+
+    // Calculate statistics based on users and topics data
+    const totalUsers = usersData.filter((user) => user.role === "user").length; // Users with 'user' role
+    const totalSubAdmins = usersData.filter(
+      (user) => user.role === "subadmin"
+    ).length; // Users with 'subadmin' role
+    const totalCourses = topicsData.length; // Total number of topics in topics.json
+    const totalTestsAttempted = usersData.reduce(
+      (acc, user) => acc + (user.test_history ? user.test_history.length : 0), // Count tests attempted by each user
+      0
+    );
+    const activeUsers = usersData.filter((user) => user.isActive).length; // Count active users (if isActive field exists)
+
+    // Respond with the computed statistics
+    return res.json({
+      totalUsers,
+      totalSubAdmins,
+      totalCourses,
+      totalTestsAttempted,
+      activeUsers,
+    });
+  } catch (err) {
+    console.error(`Error processing data: ${err}`);
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 
@@ -961,6 +1030,76 @@ app.post("/add/questions", (req, res) => {
   }
 });
 
+app.post("/update/questions", (req, res) => {
+  const {
+    question_id,
+    topic_id,
+    subtopic_id,
+    title_id,
+    question,
+    options,
+    correct_option,
+    explanation,
+    type,
+  } = req.body;
+
+  const topics = readTopicsFile();
+  const topic = topics.find((t) => t.topic_id == topic_id);
+  if (!topic) return res.status(404).json({ error: "Topic not found" });
+
+  const subtopic = topic.sub_topics.find((s) => s.subtopic_id == subtopic_id);
+  if (!subtopic) return res.status(404).json({ error: "Subtopic not found" });
+
+  const section = subtopic.utils[type].find(
+    (item) => item.title_id == title_id
+  );
+  if (!section) return res.status(404).json({ error: "Section not found" });
+
+  const questionToUpdate = section.questions.find(
+    (q) => q.question_id == question_id
+  );
+  if (!questionToUpdate)
+    return res.status(404).json({ error: "Question not found" });
+
+  questionToUpdate.question = question;
+  questionToUpdate.options = options;
+  questionToUpdate.correct_option = correct_option;
+  questionToUpdate.explanation = explanation;
+
+  writeTopicsFile(topics);
+  res.status(200).json({
+    message: "Question updated successfully",
+    updated_question: questionToUpdate,
+  });
+});
+
+app.delete("/delete/questions", (req, res) => {
+  const { question_id, topic_id, subtopic_id, title_id, type } = req.body;
+
+  const topics = readTopicsFile();
+  const topic = topics.find((t) => t.topic_id == topic_id);
+  if (!topic) return res.status(404).json({ error: "Topic not found" });
+
+  const subtopic = topic.sub_topics.find((s) => s.subtopic_id == subtopic_id);
+  if (!subtopic) return res.status(404).json({ error: "Subtopic not found" });
+
+  const section = subtopic.utils[type].find(
+    (item) => item.title_id == title_id
+  );
+  if (!section) return res.status(404).json({ error: "Section not found" });
+
+  const questionIndex = section.questions.findIndex(
+    (q) => q.question_id == question_id
+  );
+  if (questionIndex === -1)
+    return res.status(404).json({ error: "Question not found" });
+
+  section.questions.splice(questionIndex, 1);
+
+  writeTopicsFile(topics);
+  res.status(200).json({ message: "Question deleted successfully" });
+});
+
 //new_subtopic.html
 
 // 1. /subtopics
@@ -1073,6 +1212,54 @@ app.post("/add/topic/:topic_id/subtopics/:subtopic_id", (req, res) => {
   } catch (err) {
     console.error("Error adding content:", err);
     res.status(500).json({ error: err.message });
+  }
+});
+
+//-Allocate Course
+//----Allocate for Subadmin
+
+//allocate_subadmin.html
+app.get("/users", (req, res) => {
+  try {
+    const { role } = req.query;
+    const users = readUsersData();
+    const filteredUsers = users.filter((user) => user.role === role);
+    res.json(filteredUsers);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+});
+
+app.get("/user-topics", (req, res) => {
+  try {
+    const { user_id } = req.query;
+    const users = readUsersData();
+    const user = users.find((u) => u.user_id === user_id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.json(user.topics || []);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch topics" });
+  }
+});
+
+// Allocate topics to a user
+app.post("/allocate", (req, res) => {
+  const { user_id, topics } = req.body;
+
+  console.log(topics);
+
+  const users = readUsersData();
+  const user = users.find((u) => u.user_id === user_id);
+
+  if (user) {
+    user.topics = topics.map((topic_id) => {
+      const topic = readTopicsFile().find((t) => t.topic_id === topic_id);
+      return { topic_id: topic.topic_id, name: topic.name };
+    });
+    saveUsersData(users);
+    res.status(200).json({ message: "Topics allocated successfully" });
+  } else {
+    res.status(404).json({ error: "User not found" });
   }
 });
 

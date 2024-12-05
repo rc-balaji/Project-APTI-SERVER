@@ -9,17 +9,30 @@
     "city": "Tirupur",
     "state": "Tamil Nadu",
     "country": "India",
-    "topics": [],
+    "topics": [
+      {
+        "topic_id": "203715333",
+        "name": "IoT2"
+      },
+      {
+        "topic_id": "166692192",
+        "name": "4"
+      },
+      {
+        "topic_id": "399404568",
+        "name": "5"
+      }
+    ],
     "test_history": []
   },
   {
     "user_id": "133244783",
-    "name": "admin",
+    "name": "Sample",
     "role": "admin",
     "email": "admin@gmail.com",
     "password": "12345",
-    "dob": "2024-12-03",
-    "city": "Tirupur",
+    "dob": "2024-12-12",
+    "city": "Tirupur2",
     "state": "Tamil Nadu",
     "country": "India",
     "topics": []
@@ -34,7 +47,16 @@
     "city": "Tirupur",
     "state": "Tamil Nadu",
     "country": "India",
-    "topics": [],
+    "topics": [
+      {
+        "topic_id": "985800911",
+        "name": "samis"
+      },
+      {
+        "topic_id": "166692192",
+        "name": "4"
+      }
+    ],
     "test_history": []
   },
   {
@@ -48,7 +70,16 @@
     "state": "",
     "country": "",
     "role": "subadmin",
-    "topics": []
+    "topics": [
+      {
+        "topic_id": "203715333",
+        "name": "IoT2"
+      },
+      {
+        "topic_id": "985800911",
+        "name": "samis"
+      }
+    ]
   },
   {
     "user_id": "554821079",
@@ -100,6 +131,11 @@
     "state": null,
     "country": null,
     "role": "subadmin",
-    "topics": []
+    "topics": [
+      {
+        "topic_id": "203715333",
+        "name": "IoT2"
+      }
+    ]
   }
 ]

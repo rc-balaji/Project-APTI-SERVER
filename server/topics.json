@@ -14,10 +14,101 @@
           "Learning_Materials": {
             "contents": "<h1><strong><em><u>HELLO</u></em></strong></h1><h1><em><u>ASASASKA</u></em></h1>"
           },
+          "Practices": [
+            {
+              "title": "SWDWW",
+              "title_id": "286180306",
+              "questions": [
+                {
+                  "question_id": "397130811",
+                  "question": "What is LED?",
+                  "options": [
+                    "Light Emitting Diodesd",
+                    "Low Energy Device2",
+                    "Light Energy Device3",
+                    "Linear Energy Diode4"
+                  ],
+                  "correct_option": 4,
+                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators.msd"
+                },
+                {
+                  "question_id": "769250790",
+                  "question": "What is LED?",
+                  "options": [
+                    "Light Emitting Diode",
+                    "Low Energy Device",
+                    "Light Energy Device",
+                    "Linear Energy Diode"
+                  ],
+                  "correct_option": 4,
+                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
+                }
+              ]
+            },
+            {
+              "title": "sasa",
+              "title_id": "551973039",
+              "questions": []
+            }
+          ],
+          "Test": [
+            {
+              "title": "qsqs",
+              "title_id": "912878331",
+              "questions": []
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "samis",
+    "topic_id": "985800911",
+    "created_by": "133244783",
+    "created_at": "5/12/2024, 9:42:21 am",
+    "sub_topics": [
+      {
+        "name": "Sami 25",
+        "subtopic_id": "739343661",
+        "created_by": "133244783",
+        "created_at": "5/12/2024, 9:42:34 am",
+        "utils": {
+          "Learning_Materials": {
+            "contents": "<h1><strong><em><u>HELLO)</u></em></strong></h1>"
+          },
           "Practices": [],
           "Test": []
         }
       }
     ]
+  },
+  {
+    "name": "3",
+    "topic_id": "609430834",
+    "created_by": "133244783",
+    "created_at": "5/12/2024, 11:16:35 am",
+    "sub_topics": []
+  },
+  {
+    "name": "4",
+    "topic_id": "166692192",
+    "created_by": "133244783",
+    "created_at": "5/12/2024, 11:16:40 am",
+    "sub_topics": []
+  },
+  {
+    "name": "5",
+    "topic_id": "399404568",
+    "created_by": "133244783",
+    "created_at": "5/12/2024, 11:16:45 am",
+    "sub_topics": []
+  },
+  {
+    "name": "7",
+    "topic_id": "524994650",
+    "created_by": "133244783",
+    "created_at": "5/12/2024, 11:16:51 am",
+    "sub_topics": []
   }
 ]
