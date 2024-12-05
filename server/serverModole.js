@@ -74,6 +74,13 @@ const saveUsersData = (data) => {
   }
 };
 
+const getUserName = (user_id) => {
+  const users = readUsersData();
+  const user = users.find((user) => user.user_id == user_id);
+
+  return user.name;
+};
+
 //API
 
 //Profile
@@ -351,7 +358,14 @@ app.delete("/delete-subadmin/:id", (req, res) => {
 app.get("/topic", (req, res) => {
   try {
     const topics = readTopicsFile();
-    const topicList = topics.map(({ topic_id, name }) => ({ topic_id, name }));
+    const topicList = topics.map(
+      ({ topic_id, name, created_by, created_at }) => ({
+        topic_id,
+        name,
+        created_by: getUserName(created_by),
+        created_at,
+      })
+    );
     res.json(topicList);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -469,10 +483,14 @@ app.get("/subtopics", (req, res) => {
     const topic = topics.find((t) => t.topic_id == topic_id);
     if (!topic) return res.status(404).json({ error: "Topic not found" });
 
-    const subtopicsList = topic.sub_topics.map(({ subtopic_id, name }) => ({
-      subtopic_id,
-      name,
-    }));
+    const subtopicsList = topic.sub_topics.map(
+      ({ subtopic_id, name, created_at, created_by }) => ({
+        subtopic_id,
+        name,
+        created_at,
+        created_by: getUserName(created_by),
+      })
+    );
     res.json(subtopicsList);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -499,7 +517,7 @@ app.get("/topics/:topic_id/subtopics/:subtopic_id", (req, res) => {
       return res.status(404).json({ error: "Subtopic not found" });
     }
 
-    res.json({ content: subtopic.content || null });
+    res.json({ name: subtopic.name || null });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -619,6 +637,48 @@ app.get("/title", (req, res) => {
     }
 
     res.json(titlesList);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+app.get("/get-title", (req, res) => {
+  try {
+    const { topic_id, subtopic_id, utils_type, title_id } = req.query;
+
+    console.log("------", topic_id, subtopic_id, utils_type, title_id);
+
+    let topics = readTopicsFile();
+
+    // Find the topic by topic_id
+    const topic = topics.find((t) => t.topic_id == topic_id);
+    if (!topic) return res.status(404).json({ error: "Topic not found" });
+
+    // Find the subtopic within the topic
+    const subtopic = topic.sub_topics.find(
+      (st) => st.subtopic_id == subtopic_id
+    );
+    if (!subtopic) return res.status(404).json({ error: "Subtopic not found" });
+
+    // Validate utils type and process only for Practices and Test
+    if (utils_type !== "Practices" && utils_type !== "Test") {
+      return res.status(400).json({ error: "Invalid utils type specified" });
+    }
+
+    let title = null;
+
+    if (utils_type === "Practices") {
+      title = subtopic.utils.Practices.find((t) => t.title_id === title_id);
+    } else {
+      title = subtopic.utils.Test.find((t) => t.title_id === title_id);
+    }
+
+    if (!title) {
+      return res.status(404).send("Title not found");
+    }
+
+    console.log(title);
+
+    res.json(title);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
