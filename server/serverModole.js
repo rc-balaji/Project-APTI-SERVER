@@ -1314,7 +1314,12 @@ app.post("/allocate", (req, res) => {
   if (user) {
     user.topics = topics.map((topic_id) => {
       const topic = readTopicsFile().find((t) => t.topic_id === topic_id);
-      return { topic_id: topic.topic_id, name: topic.name };
+      return {
+        topic_id: topic.topic_id,
+        name: topic.name,
+        created_by: getUserName(topic.created_by),
+        created_at: topic.created_at,
+      };
     });
     saveUsersData(users);
     res.status(200).json({ message: "Topics allocated successfully" });

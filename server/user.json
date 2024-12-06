@@ -1,60 +1,56 @@
 [
   {
-    "user_id": "655258457",
+    "user_id": "452367042",
     "name": "sam",
-    "phone_number": "06383579334",
+    "phone_number": "9090909090",
     "role": "user",
     "email": "sam@gmail.com",
     "password": "12345",
-    "dob": "2024-12-05",
+    "dob": "2024-12-06",
     "city": "Tirupur",
-    "state": "TN",
+    "state": "Tamil Nadu",
     "country": "India",
     "topics": [
       {
-        "topic_id": "665424082",
-        "name": "IoT"
+        "topic_id": "495808967",
+        "name": "IoT",
+        "created_by": "KT_ADMIN",
+        "created_at": "6/12/2024, 4:47:23 pm"
       }
     ],
     "test_history": []
   },
   {
-    "user_id": "495754325",
-    "name": "admin",
-    "phone_number": "06383579334",
+    "user_id": "901148887",
+    "name": "KT_ADMIN",
+    "phone_number": "9090",
     "email": "admin@gmail.com",
     "password": "12345",
-    "dob": "2024-12-05",
+    "dob": "2024-12-06",
     "city": "Tirupur",
-    "state": "Tamilnadu",
+    "state": "Tamil Nadu",
     "country": "India",
     "role": "admin",
     "topics": []
   },
   {
-    "user_id": "765273592",
-    "name": "subadmin",
-    "phone_number": "06383579334",
+    "user_id": "478669325",
+    "name": "KT_SUBADMIN",
+    "phone_number": "9090",
     "email": "subadmin@gmail.com",
     "password": "12345",
-    "dob": "2024-12-05",
+    "dob": "2024-12-06",
     "city": "Tirupur",
-    "state": "Tamilnadu",
+    "state": "Tamil Nadu",
     "country": "India",
     "role": "subadmin",
-    "topics": []
-  },
-  {
-    "user_id": "412752277",
-    "name": "sam",
-    "phone_number": "121212",
-    "email": "12@gmail.com",
-    "password": "1234",
-    "dob": null,
-    "city": null,
-    "state": null,
-    "country": null,
-    "role": "subadmin",
-    "topics": []
+    "topics": [
+      {
+        "topic_id": "495808967",
+        "name": "IoT",
+        "created_by": "KT_ADMIN",
+        "created_at": "6/12/2024, 4:47:23 pm"
+      }
+    ]
   }
 ]
