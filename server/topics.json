@@ -12,7 +12,7 @@
         "created_at": "6/12/2024, 4:50:46 pm",
         "utils": {
           "Learning_Materials": {
-            "contents": "<p>TOPICICICIC</p>"
+            "contents": "<h1><strong><u>What is a Computer Network?</u></strong></h1><p>A computer network is a collection of interconnected devices that share resources and information. These devices can include computers, servers, printers, and other hardware. Networks allow for the efficient exchange of data, enabling various applications such as email, file sharing, and internet browsing.</p><h1><br></h1><h1>How Does a Computer Network Work?</h1><p>Basics building blocks of a Computer network are Nodes and Links. A Network Node can be illustrated as Equipment for Data Communication like a Modem, Router, etc., or Equipment of a Data Terminal like connecting two computers or more. Link in Computer Networks can be defined as wires or cables or free space of wireless networks.</p><p><br></p><p>The working of Computer Networks can be simply defined as rules or protocols which help in sending and receiving data via the links which allow Computer networks to communicate. Each device has an IP Address, that helps in identifying a device.</p><p><br></p><p><strong>What do Computer Networks do?</strong></p><p>Computer networks first developed in 1950 for military and defense purpose. At that time they are mainly used to send data through telephone lines and had limited use in business or science.</p><p><br></p><p>Today comput<em>er networks are essential for businesses also. Modern networks offer more than just connecting devices. They play a key role in helping businesses adapt to the dig</em>ital world and succeed. These networks have become more flexible, automated, and secure, making them even more important in today’s business environment.</p>"
           },
           "Practices": [
             {
@@ -58,16 +58,26 @@
                 {
                   "question_id": "470656758",
                   "question": "What is The Meaning ?",
-                  "options": [
-                    "IS meaninhg",
-                    "sdsd",
-                    "sdsdsd",
-                    "sdh"
-                  ],
+                  "options": ["IS meaninhg", "sdsd", "sdsdsd", "sdh"],
                   "correct_option": 2,
                   "explanation": "asdsd"
                 }
               ]
+            },
+            {
+              "title": "Network",
+              "title_id": "258850563",
+              "questions": []
+            },
+            {
+              "title": "Sample1",
+              "title_id": "402485309",
+              "questions": []
+            },
+            {
+              "title": "Security",
+              "title_id": "576859317",
+              "questions": []
             }
           ],
           "Test": [
@@ -78,7 +88,27 @@
             }
           ]
         }
+      },
+      {
+        "name": "Sample2",
+        "subtopic_id": "111540568",
+        "created_by": "901148887",
+        "created_at": "12/23/2024, 2:39:03 pm",
+        "utils": {
+          "Learning_Materials": {
+            "contents": ""
+          },
+          "Practices": [],
+          "Test": []
+        }
       }
     ]
+  },
+  {
+    "name": "SAMPLE",
+    "topic_id": "980382007",
+    "created_by": "901148887",
+    "created_at": "23/12/2024, 12:26:18 pm",
+    "sub_topics": []
   }
 ]

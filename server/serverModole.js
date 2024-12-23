@@ -122,14 +122,26 @@ app.post("/login", (req, res) => {
     console.log("Login");
     const { email, password } = req.body;
 
+    console.log(email, password);
+
     if (!email || !password) {
       return res.status(400).json({ error: "Email and password are required" });
     }
 
     const users = readUsersData();
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
+    // console.log(users);
+
+    const user = users.find((u) => {
+      console.log(u.email, u.password);
+
+      console.log(email, password);
+
+      console.log(email == u.email && password == u.password);
+
+      return u.email == email && u.password == password;
+    });
+
+    console.log(user);
 
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
@@ -1329,6 +1341,74 @@ app.post("/allocate", (req, res) => {
 });
 
 //--------------USERS
+
+//start_test
+
+// Endpoint: Start-Test
+app.post("/start-test", (req, res) => {
+  const payload = req.body;
+
+  console.log(payload);
+
+  try {
+    const usersData = readUsersData();
+
+    console.log("TP-1", usersData);
+
+    // Find the user
+    const user = usersData.find((user) => payload.user_id == user.user_id);
+
+    console.log("TP-2", user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    console.log("TP-3", user);
+
+    user.test_history.push(payload);
+
+    saveUsersData(usersData);
+    res.status(200).json({ message: "Test started successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error starting test", error: error.message });
+  }
+});
+
+// Endpoint: Finish-Test
+app.post("/finish-test", (req, res) => {
+  const payload = req.body;
+
+  console.log(payload);
+
+  try {
+    const usersData = readUsersData();
+
+    console.log("TP-1", usersData);
+
+    // Find the user
+    const user = usersData.find((user) => payload.user_id == user.user_id);
+
+    console.log("TP-2", user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    console.log("TP-3", user);
+
+    user.test_history.push(payload);
+
+    saveUsersData(usersData);
+    res.status(200).json({ message: "Test started successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error starting test", error: error.message });
+  }
+});
 
 // user_register.html
 app.post("/register", (req, res) => {

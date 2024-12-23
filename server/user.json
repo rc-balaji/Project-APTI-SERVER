@@ -18,7 +18,50 @@
         "created_at": "6/12/2024, 4:47:23 pm"
       }
     ],
-    "test_history": []
+    "test_history": [
+      {
+        "user_id": "452367042",
+        "topic_id": "495808967",
+        "subtopic_id": "183267604",
+        "title_id": "778166280",
+        "type": "Practices",
+        "start_at": "23/12/2024, 17:25:15",
+        "finished_at": null,
+        "status": "in-progress"
+      },
+      {
+        "user_id": "452367042",
+        "topic_id": "495808967",
+        "subtopic_id": "183267604",
+        "title_id": "778166280",
+        "type": "Practices",
+        "start_at": "23/12/2024, 17:25:15",
+        "finished_at": "23/12/2024, 17:27:00",
+        "status": "completed",
+        "report": [
+          {
+            "question_number": 1,
+            "correct_option": 1,
+            "selected_option": 1
+          },
+          {
+            "question_number": 2,
+            "correct_option": 3,
+            "selected_option": 2
+          },
+          {
+            "question_number": 3,
+            "correct_option": 4,
+            "selected_option": 3
+          },
+          {
+            "question_number": 4,
+            "correct_option": 2,
+            "selected_option": 1
+          }
+        ]
+      }
+    ]
   },
   {
     "user_id": "901148887",
