@@ -2,11 +2,11 @@
   {
     "user_id": "452367042",
     "name": "sam",
-    "phone_number": "9090909090",
+    "phone_number": "90909090902",
     "role": "user",
     "email": "sam@gmail.com",
     "password": "12345",
-    "dob": "2024-12-06",
+    "dob": "2024-12-24",
     "city": "Tirupur",
     "state": "Tamil Naduq",
     "country": "India",
@@ -213,5 +213,33 @@
         "created_at": "6/12/2024, 4:47:23 pm"
       }
     ]
+  },
+  {
+    "user_id": "565006754",
+    "name": "Samaaa",
+    "phone_number": "063835793341",
+    "role": "user",
+    "email": "sammmi@gmail.com",
+    "password": "12345",
+    "dob": "2024-12-13",
+    "city": "Tirupurw",
+    "state": "TN",
+    "country": "India",
+    "topics": [],
+    "test_history": []
+  },
+  {
+    "user_id": "767437080",
+    "name": "Samaaa",
+    "phone_number": "063835793341",
+    "role": "user",
+    "email": "sasasasa@gmail.com",
+    "password": "12345",
+    "dob": "2024-12-19",
+    "city": "Tirupurw",
+    "state": "TN",
+    "country": "India",
+    "topics": [],
+    "test_history": []
   }
 ]
