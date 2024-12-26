@@ -1410,6 +1410,194 @@ app.post("/finish-test", (req, res) => {
   }
 });
 
+//Endpoint : get-test
+
+app.get("/test-history/:user_id", (req, res) => {
+  const userId = req.params.user_id;
+
+  try {
+    const users = readUsersData();
+    const user = users.find((u) => u.user_id === userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(user.test_history);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve test history" });
+  }
+});
+
+app.get("/test-history/:user_id/:test_id", (req, res) => {
+  const { user_id, test_id } = req.params;
+
+  try {
+    const users = readUsersData();
+    const user = users.find((u) => u.user_id === user_id);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const test = user.test_history.find((t) => t.test_id === test_id);
+
+    if (!test) {
+      return res.status(404).json({ error: "Test history not found" });
+    }
+
+    res.status(200).json(test);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve test history" });
+  }
+});
+
+app.get("/attempts/:user_id/:title_id", (req, res) => {
+  const { user_id, title_id } = req.params;
+
+  try {
+    const users = readUsersData();
+    const user = users.find((u) => u.user_id === user_id);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const attempts = user.test_history.filter(
+      (t) => t.title_id === title_id
+    ).length;
+
+    res.status(200).json({ attempts });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve attempts count" });
+  }
+});
+
+// Endpoint : save-test
+
+// Function to generate a unique 9-digit test ID
+const generateUniqueTestID = (users) => {
+  let testID;
+  const existingTestIDs = new Set(
+    users.flatMap(
+      (user) => user.test_history?.map((test) => test.title_id) || []
+    )
+  );
+
+  do {
+    testID = Math.floor(100000000 + Math.random() * 900000000).toString();
+  } while (existingTestIDs.has(testID));
+
+  return testID;
+};
+
+// Express endpoint to save test result
+app.post("/save-result", (req, res) => {
+  const {
+    user_id,
+    topic_id,
+    subtopic_id,
+    type,
+    title_id,
+    start_at,
+    finished_at,
+    status,
+    score,
+    total_questions,
+    report,
+  } = req.body;
+
+  // console.log(
+  //   user_id,
+  //   " - ",
+  //   topic_id,
+  //   " - ",
+  //   subtopic_id,
+  //   " - ",
+  //   type,
+  //   " - ",
+  //   title_id,
+  //   " - ",
+  //   start_at,
+  //   " - ",
+  //   finished_at,
+  //   " - ",
+  //   status,
+  //   " - ",
+  //   score,
+  //   " - ",
+  //   total_questions,
+  //   " - ",
+  //   report
+  // );
+
+  // logRequest(req);
+
+  // Validate request body
+  if (
+    !user_id ||
+    !topic_id ||
+    !subtopic_id ||
+    !type ||
+    !start_at ||
+    !finished_at ||
+    !status ||
+    !report ||
+    !title_id ||
+    !score ||
+    !total_questions
+  ) {
+    return res.status(400).send({ error: "All fields are required." });
+  }
+  console.log("TP-2");
+
+  try {
+    const users = readUsersData();
+
+    // Find user by user_id
+    const user = users.find((u) => u.user_id == user_id);
+    if (!user) {
+      return res.status(404).send({ error: "User not found." });
+    }
+
+    console.log("TP-1");
+
+    // Generate unique test ID
+    const testID = generateUniqueTestID(users);
+
+    console.log("TP-2");
+
+    // Create new test result object
+    const newTestResult = {
+      test_id: testID,
+      user_id,
+      topic_id,
+      subtopic_id,
+      title_id,
+      type,
+      start_at,
+      finished_at,
+      status,
+      score,
+      total_questions,
+      report,
+    };
+
+    user.test_history.push(newTestResult);
+
+    // Save the updated data
+    saveUsersData(users);
+
+    res
+      .status(201)
+      .send({ message: "Test result saved successfully.", testID });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Failed to save test result: " + error.message });
+  }
+});
+
 // user_register.html
 app.post("/register", (req, res) => {
   try {

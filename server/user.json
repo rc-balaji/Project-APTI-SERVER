@@ -20,162 +20,59 @@
     ],
     "test_history": [
       {
+        "test_id": "438219676",
         "user_id": "452367042",
         "topic_id": "495808967",
         "subtopic_id": "183267604",
         "title_id": "778166280",
-        "type": "Practices",
-        "start_at": "23/12/2024, 17:33:03",
-        "finished_at": "23/12/2024, 17:33:16",
+        "type": "Test",
+        "start_at": "26/12/2024, 5:26:07 pm",
+        "finished_at": "26/12/2024, 5:30:53 pm",
         "status": "completed",
+        "score": 3,
+        "total_questions": 7,
         "report": [
           {
             "question_number": 1,
             "correct_option": 1,
-            "selected_option": 1
+            "selected_option": 1,
+            "is_correct": true
           },
           {
             "question_number": 2,
             "correct_option": 3,
-            "selected_option": 3
+            "selected_option": 2,
+            "is_correct": false
           },
           {
             "question_number": 3,
             "correct_option": 4,
-            "selected_option": 1
+            "selected_option": 3,
+            "is_correct": false
           },
           {
             "question_number": 4,
             "correct_option": 2,
-            "selected_option": 1
-          }
-        ]
-      },
-      {
-        "user_id": "452367042",
-        "topic_id": "495808967",
-        "subtopic_id": "183267604",
-        "title_id": "778166280",
-        "type": "Practices",
-        "start_at": "23/12/2024, 17:44:01",
-        "finished_at": "23/12/2024, 17:44:25",
-        "status": "completed",
-        "report": [
+            "selected_option": 2,
+            "is_correct": true
+          },
           {
-            "question_number": 1,
+            "question_number": 5,
             "correct_option": 1,
-            "selected_option": null
+            "selected_option": 2,
+            "is_correct": false
           },
           {
-            "question_number": 2,
-            "correct_option": 3,
-            "selected_option": null
-          },
-          {
-            "question_number": 3,
-            "correct_option": 4,
-            "selected_option": null
-          },
-          {
-            "question_number": 4,
+            "question_number": 6,
             "correct_option": 2,
-            "selected_option": null
-          }
-        ]
-      },
-      {
-        "user_id": "452367042",
-        "topic_id": "495808967",
-        "subtopic_id": "183267604",
-        "title_id": "778166280",
-        "type": "Practices",
-        "start_at": "23/12/2024, 17:46:32",
-        "finished_at": "23/12/2024, 17:46:50",
-        "status": "completed",
-        "report": [
-          {
-            "question_number": 1,
-            "correct_option": 1,
-            "selected_option": null
+            "selected_option": 2,
+            "is_correct": true
           },
           {
-            "question_number": 2,
+            "question_number": 7,
             "correct_option": 3,
-            "selected_option": null
-          },
-          {
-            "question_number": 3,
-            "correct_option": 4,
-            "selected_option": null
-          },
-          {
-            "question_number": 4,
-            "correct_option": 2,
-            "selected_option": null
-          }
-        ]
-      },
-      {
-        "user_id": "452367042",
-        "topic_id": "495808967",
-        "subtopic_id": "183267604",
-        "title_id": "778166280",
-        "type": "Practices",
-        "start_at": "23/12/2024, 17:46:32",
-        "finished_at": "23/12/2024, 17:47:04",
-        "status": "completed",
-        "report": [
-          {
-            "question_number": 1,
-            "correct_option": 1,
-            "selected_option": 4
-          },
-          {
-            "question_number": 2,
-            "correct_option": 3,
-            "selected_option": 4
-          },
-          {
-            "question_number": 3,
-            "correct_option": 4,
-            "selected_option": 1
-          },
-          {
-            "question_number": 4,
-            "correct_option": 2,
-            "selected_option": 1
-          }
-        ]
-      },
-      {
-        "user_id": "452367042",
-        "topic_id": "495808967",
-        "subtopic_id": "183267604",
-        "title_id": "778166280",
-        "type": "Practices",
-        "start_at": "23/12/2024, 17:46:32",
-        "finished_at": "23/12/2024, 17:47:09",
-        "status": "completed",
-        "report": [
-          {
-            "question_number": 1,
-            "correct_option": 1,
-            "selected_option": 4
-          },
-          {
-            "question_number": 2,
-            "correct_option": 3,
-            "selected_option": 4
-          },
-          {
-            "question_number": 3,
-            "correct_option": 4,
-            "selected_option": 1
-          },
-          {
-            "question_number": 4,
-            "correct_option": 2,
-            "selected_option": 2
+            "selected_option": 1,
+            "is_correct": false
           }
         ]
       }
