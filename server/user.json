@@ -20,103 +20,59 @@
     ],
     "test_history": [
       {
-        "test_id": "371861190",
+        "test_id": "763555208",
         "user_id": "452367042",
         "topic_id": "495808967",
         "subtopic_id": "183267604",
-        "title_id": "909455968",
-        "type": "Test",
-        "start_at": "27/12/2024, 12:20:09 pm",
-        "finished_at": "27/12/2024, 12:20:19 pm",
-        "status": "completed",
-        "score": 1,
-        "total_questions": 5,
-        "report": [
-          {
-            "question_number": 1,
-            "correct_option": 1,
-            "selected_option": 3,
-            "is_correct": false
-          },
-          {
-            "question_number": 2,
-            "correct_option": 2,
-            "selected_option": 1,
-            "is_correct": false
-          },
-          {
-            "question_number": 3,
-            "correct_option": 3,
-            "selected_option": 2,
-            "is_correct": false
-          },
-          {
-            "question_number": 4,
-            "correct_option": 4,
-            "selected_option": 1,
-            "is_correct": false
-          },
-          {
-            "question_number": 5,
-            "correct_option": 2,
-            "selected_option": 2,
-            "is_correct": true
-          }
-        ]
-      },
-      {
-        "test_id": "656841438",
-        "user_id": "452367042",
-        "topic_id": "495808967",
-        "subtopic_id": "183267604",
+        "title": "SKKS",
         "title_id": "377807180",
         "type": "Test",
-        "start_at": "27/12/2024, 12:59:22 pm",
-        "finished_at": "27/12/2024, 12:59:37 pm",
+        "start_at": "27/12/2024, 4:57:40 pm",
+        "finished_at": "27/12/2024, 5:00:01 pm",
         "status": "completed",
-        "score": 3,
+        "score": 0,
         "total_questions": 7,
         "report": [
           {
             "question_number": 1,
             "correct_option": 1,
-            "selected_option": 1,
-            "is_correct": true
+            "selected_option": 0,
+            "is_correct": false
           },
           {
             "question_number": 2,
             "correct_option": 3,
-            "selected_option": 1,
+            "selected_option": 0,
             "is_correct": false
           },
           {
             "question_number": 3,
             "correct_option": 4,
-            "selected_option": 1,
+            "selected_option": 0,
             "is_correct": false
           },
           {
             "question_number": 4,
             "correct_option": 2,
-            "selected_option": 2,
-            "is_correct": true
+            "selected_option": 0,
+            "is_correct": false
           },
           {
             "question_number": 5,
             "correct_option": 1,
-            "selected_option": 2,
+            "selected_option": 0,
             "is_correct": false
           },
           {
             "question_number": 6,
             "correct_option": 2,
-            "selected_option": 2,
-            "is_correct": true
+            "selected_option": 0,
+            "is_correct": false
           },
           {
             "question_number": 7,
             "correct_option": 3,
-            "selected_option": 2,
+            "selected_option": 0,
             "is_correct": false
           }
         ]

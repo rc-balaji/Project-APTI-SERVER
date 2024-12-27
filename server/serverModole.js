@@ -653,11 +653,10 @@ app.get("/title", (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 app.get("/get-title", (req, res) => {
   try {
     const { topic_id, subtopic_id, utils_type, title_id } = req.query;
-
-    console.log("------", topic_id, subtopic_id, utils_type, title_id);
 
     let topics = readTopicsFile();
 
@@ -687,8 +686,6 @@ app.get("/get-title", (req, res) => {
     if (!title) {
       return res.status(404).send("Title not found");
     }
-
-    console.log(title);
 
     res.json(title);
   } catch (err) {
@@ -1558,6 +1555,7 @@ app.post("/save-result", (req, res) => {
     topic_id,
     subtopic_id,
     type,
+    title,
     title_id,
     start_at,
     finished_at,
@@ -1567,29 +1565,32 @@ app.post("/save-result", (req, res) => {
     report,
   } = req.body;
 
-  // console.log(
-  //   user_id,
-  //   " - ",
-  //   topic_id,
-  //   " - ",
-  //   subtopic_id,
-  //   " - ",
-  //   type,
-  //   " - ",
-  //   title_id,
-  //   " - ",
-  //   start_at,
-  //   " - ",
-  //   finished_at,
-  //   " - ",
-  //   status,
-  //   " - ",
-  //   score,
-  //   " - ",
-  //   total_questions,
-  //   " - ",
-  //   report
-  // );
+  console.log(
+    user_id,
+    " - ",
+    topic_id,
+    " - ",
+    subtopic_id,
+    " - ",
+    type,
+    " - ",
+
+    title,
+    " - ",
+    title_id,
+    " - ",
+    start_at,
+    " - ",
+    finished_at,
+    " - ",
+    status,
+    " - ",
+    score,
+    " - ",
+    total_questions,
+    " - ",
+    report
+  );
 
   // logRequest(req);
 
@@ -1603,8 +1604,8 @@ app.post("/save-result", (req, res) => {
     !finished_at ||
     !status ||
     !report ||
+    !title ||
     !title_id ||
-    !score ||
     !total_questions
   ) {
     return res.status(400).send({ error: "All fields are required." });
@@ -1633,6 +1634,7 @@ app.post("/save-result", (req, res) => {
       user_id,
       topic_id,
       subtopic_id,
+      title,
       title_id,
       type,
       start_at,
