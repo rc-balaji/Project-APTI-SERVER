@@ -1473,6 +1473,66 @@ app.get("/attempts/:user_id/:title_id", (req, res) => {
   }
 });
 
+// Ednpoint : get-number of Questions
+
+app.get("/api/questions/count", (req, res) => {
+  const { topic_id, subtopic_id, title_id, util_type } = req.query;
+
+  console.log(topic_id, subtopic_id, title_id, util_type);
+
+  if (!topic_id || !subtopic_id || !title_id || !util_type) {
+    return res.status(400).json({
+      status: "error",
+      message: "Missing required parameters.",
+    });
+  }
+
+  const data = readTopicsFile();
+
+  // Find the topic
+  const topic = data.find((t) => t.topic_id === topic_id);
+  if (!topic) {
+    return res.status(404).json({
+      status: "error",
+      message: "Topic not found.",
+    });
+  }
+
+  // Find the subtopic
+  const subtopic = topic.sub_topics.find((s) => s.subtopic_id === subtopic_id);
+  if (!subtopic) {
+    return res.status(404).json({
+      status: "error",
+      message: "Subtopic not found.",
+    });
+  }
+
+  // Check utility type and find the title
+  const utils = subtopic.utils[util_type];
+  if (!utils) {
+    return res.status(404).json({
+      status: "error",
+      message: "Utility type not found.",
+    });
+  }
+
+  const title = utils.find((t) => t.title_id === title_id);
+  if (!title) {
+    return res.status(404).json({
+      status: "error",
+      message: "Title not found.",
+    });
+  }
+
+  // Get the question count
+  const questionCount = title.questions.length;
+
+  res.status(200).json({
+    status: "success",
+    question_count: questionCount,
+  });
+});
+
 // Endpoint : save-test
 
 // Function to generate a unique 9-digit test ID

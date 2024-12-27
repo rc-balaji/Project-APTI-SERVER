@@ -14,192 +14,7 @@
           "Learning_Materials": {
             "contents": "<h1><strong><u>What is a Computer Network?</u></strong></h1><p>A computer network is a collection of interconnected devices that share resources and information. These devices can include computers, servers, printers, and other hardware. Networks allow for the efficient exchange of data, enabling various applications such as email, file sharing, and internet browsing.</p><h1><br></h1><h1>How Does a Computer Network Work?</h1><p>Basics building blocks of a Computer network are Nodes and Links. A Network Node can be illustrated as Equipment for Data Communication like a Modem, Router, etc., or Equipment of a Data Terminal like connecting two computers or more. Link in Computer Networks can be defined as wires or cables or free space of wireless networks.</p><p><br></p><p>The working of Computer Networks can be simply defined as rules or protocols which help in sending and receiving data via the links which allow Computer networks to communicate. Each device has an IP Address, that helps in identifying a device.</p><p><br></p><p><strong>What do Computer Networks do?</strong></p><p>Computer networks first developed in 1950 for military and defense purpose. At that time they are mainly used to send data through telephone lines and had limited use in business or science.</p><p><br></p><p>Today comput<em>er networks are essential for businesses also. Modern networks offer more than just connecting devices. They play a key role in helping businesses adapt to the dig</em>ital world and succeed. These networks have become more flexible, automated, and secure, making them even more important in today’s business environment.</p>"
           },
-          "Practices": [
-            {
-              "title": "Sample",
-              "title_id": "778166280",
-              "questions": [
-                {
-                  "question_id": "310329894",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 1,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "166959003",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 3,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "187239601",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 4,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "470656758",
-                  "question": "What is The Meaning ?",
-                  "options": ["IS meaninhg", "sdsd", "sdsdsd", "sdh"],
-                  "correct_option": 2,
-                  "explanation": "asdsd"
-                },
-                {
-                  "question_id": "961849419",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 1,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "298176387",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 2,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "141686332",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 3,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "289241972",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 4,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "650156864",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 1,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "290447528",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 2,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "517861864",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 3,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "264739607",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 4,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "835614226",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 1,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                },
-                {
-                  "question_id": "337277622",
-                  "question": "What is LED?",
-                  "options": [
-                    "Light Emitting Diode",
-                    "Low Energy Device",
-                    "Light Energy Device",
-                    "Linear Energy Diode"
-                  ],
-                  "correct_option": 2,
-                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
-                }
-              ]
-            },
-            {
-              "title": "Network",
-              "title_id": "258850563",
-              "questions": []
-            },
-            {
-              "title": "Sample1",
-              "title_id": "402485309",
-              "questions": []
-            },
-            {
-              "title": "Security",
-              "title_id": "576859317",
-              "questions": []
-            }
-          ],
+          "Practices": [],
           "Test": [
             {
               "title": "SKKS",
@@ -244,7 +59,12 @@
                 {
                   "question_id": "470656758",
                   "question": "What is The Meaning ?",
-                  "options": ["IS meaninhg", "sdsd", "sdsdsd", "sdh"],
+                  "options": [
+                    "IS meaninhg",
+                    "sdsd",
+                    "sdsdsd",
+                    "sdh"
+                  ],
                   "correct_option": 2,
                   "explanation": "asdsd"
                 },
@@ -282,6 +102,72 @@
                     "Linear Energy Diode"
                   ],
                   "correct_option": 3,
+                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
+                }
+              ]
+            },
+            {
+              "title": "Sami",
+              "title_id": "909455968",
+              "questions": [
+                {
+                  "question_id": "321175776",
+                  "question": "What is LED?",
+                  "options": [
+                    "Light Emitting Diode",
+                    "Low Energy Device",
+                    "Light Energy Device",
+                    "Linear Energy Diode"
+                  ],
+                  "correct_option": 1,
+                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
+                },
+                {
+                  "question_id": "389752124",
+                  "question": "What is LED?",
+                  "options": [
+                    "Light Emitting Diode",
+                    "Low Energy Device",
+                    "Light Energy Device",
+                    "Linear Energy Diode"
+                  ],
+                  "correct_option": 2,
+                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
+                },
+                {
+                  "question_id": "757821292",
+                  "question": "What is LED?",
+                  "options": [
+                    "Light Emitting Diode",
+                    "Low Energy Device",
+                    "Light Energy Device",
+                    "Linear Energy Diode"
+                  ],
+                  "correct_option": 3,
+                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
+                },
+                {
+                  "question_id": "920363926",
+                  "question": "What is LED?",
+                  "options": [
+                    "Light Emitting Diode",
+                    "Low Energy Device",
+                    "Light Energy Device",
+                    "Linear Energy Diode"
+                  ],
+                  "correct_option": 4,
+                  "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
+                },
+                {
+                  "question_id": "475477850",
+                  "question": "What is LED?",
+                  "options": [
+                    "Light Emitting Diode",
+                    "Low Energy Device",
+                    "Light Energy Device",
+                    "Linear Energy Diode"
+                  ],
+                  "correct_option": 2,
                   "explanation": "An LED is a semiconductor device that emits light when an electric current passes through it. It is widely used in electronic displays, lighting, and indicators."
                 }
               ]
