@@ -85,6 +85,7 @@ const getUserName = (user_id) => {
 
 //Profile
 
+//--Complete3
 app.get("/api/users/:user_id", (req, res) => {
   const { user_id } = req.params;
   const users = readUsersData();
@@ -97,6 +98,7 @@ app.get("/api/users/:user_id", (req, res) => {
   }
 });
 
+//--Complete3
 app.post("/api/users/:user_id/update", (req, res) => {
   const { user_id } = req.params;
   const updatedData = req.body;
@@ -116,7 +118,7 @@ app.post("/api/users/:user_id/update", (req, res) => {
 // LOGIN
 
 // login.html
-
+//--Complete3
 app.post("/login", (req, res) => {
   try {
     console.log("Login");
@@ -179,6 +181,7 @@ function generateUniqueUserId(users) {
   return userId;
 }
 
+//--Complete3
 app.post("/admin-register", (req, res) => {
   try {
     console.log("Admin Register");
@@ -235,6 +238,7 @@ app.post("/admin-register", (req, res) => {
 
 // home_page admin.html
 
+//Complete3
 // Dashboard Stats Endpoint
 app.get("/dashboard-stats", (req, res) => {
   try {
@@ -272,6 +276,7 @@ app.get("/dashboard-stats", (req, res) => {
   }
 });
 
+//Complete3
 // new_subadmin.html
 
 // 1. /admin-register
@@ -287,7 +292,7 @@ app.get("/get-subadmins", (req, res) => {
 });
 
 // edit_subadmin.html
-
+//Complete3
 app.put("/edit-subadmin/:id", (req, res) => {
   try {
     console.log("Edit Subadmin");
@@ -332,6 +337,7 @@ app.put("/edit-subadmin/:id", (req, res) => {
   }
 });
 
+//Complete3
 app.delete("/delete-subadmin/:id", (req, res) => {
   try {
     console.log("Delete Subadmin");
@@ -366,7 +372,7 @@ app.delete("/delete-subadmin/:id", (req, res) => {
 //----EDIT CONTENT
 
 //edit_content.html
-
+//Complete3
 app.get("/topic", (req, res) => {
   try {
     const topics = readTopicsFile();
@@ -385,6 +391,7 @@ app.get("/topic", (req, res) => {
 });
 
 // Endpoint to Get Topic Details
+//Complete3
 app.get("/topic/:id", (req, res) => {
   const topicId = req.params.id;
 
@@ -402,6 +409,7 @@ app.get("/topic/:id", (req, res) => {
   }
 });
 
+//Complete3
 // Endpoint to Edit Topic
 app.put("/topic/:id", (req, res) => {
   const topicId = req.params.id;
@@ -430,6 +438,7 @@ app.put("/topic/:id", (req, res) => {
   }
 });
 
+//Complete3
 // Endpoint to Delete Topic
 app.delete("/topic/:id", (req, res) => {
   const topicId = req.params.id;
@@ -455,7 +464,6 @@ app.delete("/topic/:id", (req, res) => {
 });
 
 //edit_questions.html
-
 app.get("/questions/:title_id", (req, res) => {
   logRequest(req);
   try {
@@ -467,10 +475,7 @@ app.get("/questions/:title_id", (req, res) => {
 
     const subtopic = topic.sub_topics.find((s) => s.subtopic_id == subtopic_id);
     if (!subtopic) return res.status(404).json({ error: "Subtopic not found" });
-
-    if (utils === "content") {
-      return res.json({ content: subtopic.utils.Learning_Materials.contents });
-    } else if (utils === "Practices" || utils === "Test") {
+    if (utils === "Practices" || utils === "Test") {
       if (title_id) {
         const item = subtopic.utils[utils].find((u) => u.title_id == title_id);
         if (!item) return res.status(404).json({ error: "Title not found" });
@@ -1226,7 +1231,7 @@ app.post("/add/topic/:topic_id/subtopics", (req, res) => {
 
 //new_title.html
 
-// 1 . /title
+// 1 . /subtopics
 
 // Function to generate a unique 9-digit title ID
 function generateUniqueTitleId(section) {
@@ -1660,6 +1665,7 @@ app.post("/save-result", (req, res) => {
   }
 });
 
+// /Complete3;
 // user_register.html
 app.post("/register", (req, res) => {
   try {
